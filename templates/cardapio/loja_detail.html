@@ -1,0 +1,7 @@
+{% extends '_layout1.html' %} <!-- herda tudo que já tem em _layout1.html -->
+{% block content %} <!-- substitui o bloco content em _layout1.html -->
+    <article>
+    <h1>{{ loja.nome }}</h1>
+    <p>Pedido mínimo: R$ {{ loja.pedido_minimo }}</p>
+    </article>
+{% endblock %} <!-- fecha o bloco content -->

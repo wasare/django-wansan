@@ -1,0 +1,25 @@
+{% extends '_layout1.html' %}
+<!-- herda tudo que já tem em _layout1.html -->
+{% block content %}
+<!-- substitui o bloco content em _layout1.html -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Editando Post Nº {{ post.id }}</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p>
+                {% if post.imagem.url is not None %}
+                    <img src="{{ post.imagem.url }}" style="height: 150px;">
+                {% else %}
+                    <span class="alert-warning">Não há imagem registrada.</span>
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+<!-- fecha o bloco content -->

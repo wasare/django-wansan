@@ -1,0 +1,20 @@
+<!-- herda tudo que já tem em _layout1.html -->
+{% extends '_layout1.html' %}
+
+{% block head_title %}
+   Lojas
+{% endblock %}
+<h1>Todas as Lojas</h1>
+
+<!-- substitui o bloco content em _layout1.html -->
+{% block content %}
+    <h1>Bem vindo ao Cardápio Oline</h1>
+    {% for loja in lojas %}
+    <article>
+        <p>
+            {{ loja.nome }} - <a href="/loja/{{ loja.id }}">Ver loja</a>
+        </p>
+    </article>
+    {% endfor %}
+{% endblock %}
+<!-- fecha o bloco content -->

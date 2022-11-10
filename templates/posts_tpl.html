@@ -1,0 +1,30 @@
+<!-- herda tudo que já tem em _layout1.html -->
+{% extends '_layout1.html' %}
+
+{% block head_title %}
+    Meu Blog
+{% endblock %}
+<h1> Meus Posts</h1>
+
+<!-- substitui o bloco content em _layout1.html -->
+{% block content %}
+    <h1>Bem vindo ao Blog</h1>
+    <p>
+        <a href="{% url 'post_add' %}" class="btn btn-lg btn-primary font-weight-bold">
+        + Post
+        </a>
+        
+    </p>
+    {% for post in posts_list %}
+    <article>
+        <h2>Em: {{ post.pub_date|date:"d / m / Y" }}</h2>
+        <p>{{ post.body_text }}</p>
+        <a href="{% url 'post_detail' pk=post.id %}">Ver mais</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'post_edit' pk=post.id %}" class="link-secondary">Editar</a>
+        &nbsp;&nbsp;
+        <a href="{% url 'post_delete' pk=post.id %}" class="link-secondary">Excluir</a>
+    </article>
+    {% endfor %}
+{% endblock %}
+<!-- fecha o bloco content -->
