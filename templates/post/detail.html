@@ -2,6 +2,7 @@
 {% block content %} <!-- substitui o bloco content em _layout1.html -->
     <article>
     <h1>{{ post.pub_date|date:"d / m / Y" }}</h1>
+    <span>Autor: {{ post.autor.username }}</span>
     {% if post.categoria is not None %}
     <h5>{{ post.categoria }}</h5>
     {% endif %}
@@ -12,9 +13,11 @@
         <img src="{{ post.imagem.url }}">
         {% endif %}
     </p>
-    <a href="{% url 'post_edit' pk=post.id %}" class="link-secondary">Editar</a>
-    &nbsp;&nbsp;
-    <a href="{% url 'post_delete' pk=post.id %}" class="link-secondary">Excluir</a>
+    {% if post.autor == user %}
+        <a href="{% url 'post_edit' pk=post.id %}" class="link-secondary">Editar</a>
+        &nbsp;&nbsp;
+        <a href="{% url 'post_delete' pk=post.id %}" class="link-secondary">Excluir</a>
+    {% endif %}
     </article>
     <a href="{% url 'posts_list' %}" class="btn btn-secondary">Voltar</a>
 {% endblock %} <!-- fecha o bloco content -->

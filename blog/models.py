@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model # o model User pode ser personalizado
+
 
 # Create your models here.
 class Post(models.Model):
@@ -19,4 +21,9 @@ class Post(models.Model):
         upload_to='images',
         default=None,
         null=True
+    )
+    autor = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.DO_NOTHING, # ou models.CASCADE
+        # null=True, # se puder ser null
     )
